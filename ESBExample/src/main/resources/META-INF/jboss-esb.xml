@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+	xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd">
+	<providers>
+		<jbr-provider host="lhost" name="testJBRprovider"
+			protocol="http">
+			<jbr-bus busid="testseq" port="1234" />
+		</jbr-provider>
+	</providers>
+	<services>
+		<service category="test" description="first service to call"
+			invmScope="GLOBAL" name="testService1">
+			<listeners>
+				<jbr-listener busidref="testseq" is-gateway="true"
+					name="TestJBRListener" />
+			</listeners>
+			<actions mep="OneWay">
+				<action class="org.jboss.soa.esb.actions.SystemPrintln" name="println">
+					<property name="message"
+						value="***************** First Service *****************" />
+				</action>
+				<action class="com.program.action.ESBExampleAction" name="actionClass" />
+			</actions>
+		</service>
+		<service category="test" description="first service to call"
+			invmScope="GLOBAL" name="testService2">
+			<actions mep="RequestResponse">
+				<action class="org.jboss.soa.esb.actions.SystemPrintln" name="println">
+					<property name="message"
+						value="***************** Second Service *****************" />
+				</action>
+
+				<action class="org.jboss.soa.esb.actions.soap.SOAPProcessor"
+					name="callUserManager">
+					<property name="jbossws-endpoint" value="user" />
+				
+				</action>
+					<action class="com.program.action.ESBExampleAction" name="actionClass"
+						process="secondService" />
+			</actions>
+		</service>
+	</services>
+</jbossesb>
