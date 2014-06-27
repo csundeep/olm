@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fault="http://bookWorms.com/ws/faults"
+	xmlns:target="http://bookWorms.com/usermanager" targetNamespace="http://bookWorms.com/usermanager"
+	attributeFormDefault="qualified" elementFormDefault="qualified">
+	<element name="addUserRequest" type="target:addUser" />
+	<element name="addUserResponse" type="target:addUserResponse" />
+	<complexType name="addUser">
+		<all>
+			<element name="firstName" type="target:StringMaxLength16Type"></element>
+			<element name="lastName" type="target:StringMaxLength16Type"></element>
+			<element name="password" type="target:StringMaxLength16Type"></element>
+			<element name="dateOfBirth" type="date"></element>
+			<element name="gender" type="target:StringMaxLength1Type"></element>
+			<element name="address" type="target:addressType"></element>
+			<element name="email" type="target:StringMaxLength16Type"></element>
+			<element name="phoneNumber" type="long"></element>
+			<element name="securityQue" type="target:StringMaxLength64Type"></element>
+			<element name="answer" type="target:StringMaxLength16Type"></element>
+		</all>
+	</complexType>
+
+	<complexType name="addUserResponse">
+		<all>
+			<element name="userIdResponse" type="long"></element>
+		</all>
+	</complexType>
+
+	<complexType name="addressType">
+		<all>
+			<element name="addressLine1" type="target:StringMaxLength64Type"></element>
+			<element name="addressLine2" type="target:StringMaxLength64Type"></element>
+			<element name="state" type="target:StringMaxLength16Type"></element>
+			<element name="city" type="target:StringMaxLength16Type"></element>
+			<element name="pinCode" type="long"></element>
+		</all>
+	</complexType>
+
+	<simpleType name="StringMaxLength64Type">
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="64" />
+		</restriction>
+	</simpleType>
+	<simpleType name="StringMaxLength32Type">
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="32" />
+		</restriction>
+	</simpleType>
+	<simpleType name="StringMaxLength16Type">
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="16" />
+		</restriction>
+	</simpleType>
+	<simpleType name="StringMaxLength1Type">
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+
+</schema>

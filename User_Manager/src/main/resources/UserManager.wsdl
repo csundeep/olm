@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/UserManager/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserManager" targetNamespace="http://www.example.org/UserManager/">
-  <wsdl:types>
-    <xsd:schema targetNamespace="http://www.example.org/UserManager/">
-      <xsd:element name="NewOperation">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="in" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="NewOperationResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="out" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="NewOperationRequest">
-    <wsdl:part element="tns:NewOperation" name="parameters"/>
-  </wsdl:message>
-  <wsdl:message name="NewOperationResponse">
-    <wsdl:part element="tns:NewOperationResponse" name="parameters"/>
-  </wsdl:message>
-  <wsdl:portType name="UserManager">
-    <wsdl:operation name="NewOperation">
-      <wsdl:input message="tns:NewOperationRequest"/>
-      <wsdl:output message="tns:NewOperationResponse"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="UserManagerSOAP" type="tns:UserManager">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="NewOperation">
-      <soap:operation soapAction="http://www.example.org/UserManager/NewOperation"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="UserManager">
-    <wsdl:port binding="tns:UserManagerSOAP" name="UserManagerSOAP">
-      <soap:address location="http://www.example.org/"/>
-    </wsdl:port>
-  </wsdl:service>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://bookWorms.com/usermanager" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="usermanager"
+	targetNamespace="http://bookWorms.com/usermanager">
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+			xmlns:fault="http://bookWorms.com/ws/faults" xmlns:target="http://bookWorms.com/usermanager"
+			targetNamespace="http://bookWorms.com/usermanager"
+			attributeFormDefault="qualified" elementFormDefault="qualified">
+			<include schemaLocation="./UserManager.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="addUserRquest">
+		<wsdl:part name="addUserRquest" element="tns:addUserRequest"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="addUserResponse">
+		<wsdl:part name="addUserResponse" element="tns:addUserResponse"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="UserManagerPortType">
+		<wsdl:operation name="addUser">
+			<wsdl:input message="tns:addUserRquest"></wsdl:input>
+			<wsdl:output message="tns:addUserResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="UserManagerBinding" type="tns:UserManagerPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+		<wsdl:operation name="addUser">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="UserManagerService">
+		<wsdl:port name="UserManagerPortType" binding="tns:UserManagerBinding">
+			<soap:address location="http://localhost:8080/User_Manager/user?wsdl" />
+		</wsdl:port>
+	</wsdl:service>
+
 </wsdl:definitions>
