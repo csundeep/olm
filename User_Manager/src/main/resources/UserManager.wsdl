@@ -36,6 +36,22 @@
 		<wsdl:part name="getUserResponse" element="tns:addUserResponse"></wsdl:part>
 	</wsdl:message>
 
+	<wsdl:message name="forgotPasswordRequest">
+		<wsdl:part name="forgotPasswordRequest" element="tns:forgotPasswordRequest"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="forgotPasswordResponse">
+		<wsdl:part name="forgotPasswordResponse" element="tns:forgotPasswordResponse"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="resetPasswordRequest">
+		<wsdl:part name="resetPasswordRequest" element="tns:resetPasswordRequest"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="resetPasswordResponse">
+		<wsdl:part name="resetPasswordResponse" element="tns:resetPasswordResponse"></wsdl:part>
+	</wsdl:message>
+
 	<wsdl:portType name="UserManagerPortType">
 
 		<wsdl:operation name="addUser">
@@ -52,12 +68,22 @@
 			<wsdl:input message="tns:getUserRequest"></wsdl:input>
 			<wsdl:output message="tns:getUserResponse"></wsdl:output>
 		</wsdl:operation>
+
+		<wsdl:operation name="forgotPassword">
+			<wsdl:input message="tns:forgotPasswordRequest"></wsdl:input>
+			<wsdl:output message="tns:forgotPasswordResponse"></wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="resetPassword">
+			<wsdl:input message="tns:resetPasswordRequest"></wsdl:input>
+			<wsdl:output message="tns:resetPasswordResponse"></wsdl:output>
+		</wsdl:operation>
 	</wsdl:portType>
 
 	<wsdl:binding name="UserManagerBinding" type="tns:UserManagerPortType">
 		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
 			style="document" />
-		
+
 		<wsdl:operation name="addUser">
 			<soap:operation soapAction="" style="document" />
 			<wsdl:input>
@@ -67,7 +93,7 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		
+
 		<wsdl:operation name="signIn">
 			<soap:operation soapAction="" style="document" />
 			<wsdl:input>
@@ -77,8 +103,28 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		
+
 		<wsdl:operation name="getUser">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="forgotPassword">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="resetPassword">
 			<soap:operation soapAction="" style="document" />
 			<wsdl:input>
 				<soap:body use="literal" />
