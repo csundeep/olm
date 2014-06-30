@@ -3,7 +3,14 @@
 	xmlns:target="http://bookWorms.com/usermanager" targetNamespace="http://bookWorms.com/usermanager"
 	attributeFormDefault="qualified" elementFormDefault="qualified">
 	<element name="addUserRequest" type="target:addUser" />
+	<element name="signInRequest" type="target:signInUser" />
+	<element name="getUserRequest" type="target:getUserRequest"></element>
 	<element name="addUserResponse" type="target:addUserResponse" />
+	<element name="signInResponse" type="target:signInResponse" />
+	<element name="getUserResponse" type="target:getUserResponse"></element>
+
+
+
 	<complexType name="addUser">
 		<all>
 			<element name="firstName" type="target:StringMaxLength16Type"></element>
@@ -19,9 +26,40 @@
 		</all>
 	</complexType>
 
+	<complexType name="signInUser">
+		<all>
+			<element name="email" type="target:StringMaxLength16Type"></element>
+			<element name="password" type="target:StringMaxLength16Type"></element>
+		</all>
+	</complexType>
+
+	<complexType name="getUserRequest">
+		<all>
+			<element name="userId" type="long"></element>
+		</all>
+	</complexType>
+
 	<complexType name="addUserResponse">
 		<all>
 			<element name="userIdResponse" type="long"></element>
+		</all>
+	</complexType>
+
+	<complexType name="signInResponse">
+		<all>
+			<element name="userIdResponse" type="long"></element>
+		</all>
+	</complexType>
+
+	<complexType name="getUserResponse">
+		<all>
+			<element name="firstName" type="target:StringMaxLength16Type"></element>
+			<element name="lastName" type="target:StringMaxLength16Type"></element>
+			<element name="dateOfBirth" type="date"></element>
+			<element name="gender" type="target:StringMaxLength1Type"></element>
+			<element name="address" type="target:addressType"></element>
+			<element name="email" type="target:StringMaxLength16Type"></element>
+			<element name="phoneNumber" type="long"></element>
 		</all>
 	</complexType>
 

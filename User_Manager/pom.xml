@@ -130,8 +130,8 @@
 				<version>2.3</version>
 				<configuration>
 					<attachClasses>true</attachClasses>
-					<warSourceDirectory>WebContent</warSourceDirectory>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<warSourceDirectory>src/main/resources/WebContent</warSourceDirectory>
+					<failOnMissingWebXml>true</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 

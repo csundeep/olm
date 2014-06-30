@@ -20,17 +20,65 @@
 		<wsdl:part name="addUserResponse" element="tns:addUserResponse"></wsdl:part>
 	</wsdl:message>
 
+	<wsdl:message name="signInRequest">
+		<wsdl:part name="signInRequest" element="tns:signInRequest"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="signInResponse">
+		<wsdl:part name="signInResponse" element="tns:signInResponse"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getUserRequest">
+		<wsdl:part name="getUserRequest" element="tns:getUserRequest"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getUserResponse">
+		<wsdl:part name="getUserResponse" element="tns:addUserResponse"></wsdl:part>
+	</wsdl:message>
+
 	<wsdl:portType name="UserManagerPortType">
+
 		<wsdl:operation name="addUser">
 			<wsdl:input message="tns:addUserRquest"></wsdl:input>
 			<wsdl:output message="tns:addUserResponse"></wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="signIn">
+			<wsdl:input message="tns:signInRequest"></wsdl:input>
+			<wsdl:output message="tns:signInResponse"></wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="getUser">
+			<wsdl:input message="tns:getUserRequest"></wsdl:input>
+			<wsdl:output message="tns:getUserResponse"></wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
 
 	<wsdl:binding name="UserManagerBinding" type="tns:UserManagerPortType">
 		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
 			style="document" />
+		
 		<wsdl:operation name="addUser">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="signIn">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getUser">
 			<soap:operation soapAction="" style="document" />
 			<wsdl:input>
 				<soap:body use="literal" />
@@ -43,7 +91,8 @@
 
 	<wsdl:service name="UserManagerService">
 		<wsdl:port name="UserManagerPortType" binding="tns:UserManagerBinding">
-			<soap:address location="http://localhost:8080/User_Manager/user?wsdl" />
+			<soap:address
+				location="http://localhost:8080/User_Manager-0.0.1-SNAPSHOT/user" />
 		</wsdl:port>
 	</wsdl:service>
 
