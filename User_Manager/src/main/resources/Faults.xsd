@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This schema contains fault element definitions. -->
+<xs:schema xmlns:target="http://bookWorms.com/ws/faults" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://bookWorms.com/ws/faults" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Fault types -->
+	<xs:complexType name="FaultDetails">
+		<xs:sequence>
+			<xs:element name="Code" type="xs:string" />
+			<xs:element name="Text" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Fault">
+		<xs:sequence>
+			<xs:element name="Fault" type="target:FaultDetails" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SubFaults">
+		<xs:sequence>
+			<xs:element name="SubFault" type="target:FaultDetails" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServerFault">
+		<xs:complexContent>
+			<xs:extension base="target:Fault" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ClientFault">
+		<xs:complexContent>
+			<xs:extension base="target:Fault">
+				<xs:sequence>
+					<xs:element name="SubFaults" type="target:SubFaults" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="BusinessFaultType">
+		<xs:all>
+			<xs:element name="FaultDetails" type="target:FaultDetailsType" />
+			<xs:element name="SubFaults" type="target:SubFaultsType" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="SystemFaultType">
+		<xs:all>
+			<xs:element name="FaultDetails" type="target:FaultDetailsType" />
+			<xs:element name="SubFaults" type="target:SubFaultsType" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="FaultDetailsType">
+		<xs:all>
+			<xs:element name="Code" type="target:StringMaxLength30Type" />
+			<xs:element name="Msg" type="target:StringMaxLength100Type" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="SubFaultsType">
+		<xs:sequence>
+			<xs:element name="FaultDetails" type="target:FaultDetailsType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="StringMaxLength30Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="30" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StringMaxLength100Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
