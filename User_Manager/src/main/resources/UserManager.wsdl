@@ -9,11 +9,13 @@
 			targetNamespace="http://bookWorms.com/usermanager"
 			attributeFormDefault="qualified" elementFormDefault="qualified">
 			<include schemaLocation="./UserManager.xsd" />
+			<import namespace="http://bookWorms.com/ws/faults"
+				schemaLocation="./Faults.xsd" />
 		</xsd:schema>
 	</wsdl:types>
 
-	<wsdl:message name="addUserRquest">
-		<wsdl:part name="addUserRquest" element="tns:addUserRequest"></wsdl:part>
+	<wsdl:message name="addUserRequest">
+		<wsdl:part name="addUserRequest" element="tns:addUserRequest"></wsdl:part>
 	</wsdl:message>
 
 	<wsdl:message name="addUserResponse">
@@ -52,31 +54,48 @@
 		<wsdl:part name="resetPasswordResponse" element="tns:resetPasswordResponse"></wsdl:part>
 	</wsdl:message>
 
+	<wsdl:message name="ClientFaultMessage">
+		<wsdl:part name="parameters" element="tns:ClientFault" />
+	</wsdl:message>
+	<wsdl:message name="ServerFaultMessage">
+		<wsdl:part name="parameters" element="tns:ServerFault" />
+	</wsdl:message>
+
 	<wsdl:portType name="UserManagerPortType">
 
 		<wsdl:operation name="addUser">
-			<wsdl:input message="tns:addUserRquest"></wsdl:input>
+			<wsdl:input message="tns:addUserRequest"></wsdl:input>
 			<wsdl:output message="tns:addUserResponse"></wsdl:output>
+			<wsdl:fault name="ClientFaultBinding" message="tns:ClientFaultMessage" />
+			<wsdl:fault name="ServerFaultBinding" message="tns:ServerFaultMessage" />
 		</wsdl:operation>
 
 		<wsdl:operation name="signIn">
 			<wsdl:input message="tns:signInRequest"></wsdl:input>
 			<wsdl:output message="tns:signInResponse"></wsdl:output>
+			<wsdl:fault name="ClientFaultBinding" message="tns:ClientFaultMessage" />
+			<wsdl:fault name="ServerFaultBinding" message="tns:ServerFaultMessage" />
 		</wsdl:operation>
 
 		<wsdl:operation name="getUser">
 			<wsdl:input message="tns:getUserRequest"></wsdl:input>
 			<wsdl:output message="tns:getUserResponse"></wsdl:output>
+			<wsdl:fault name="ClientFaultBinding" message="tns:ClientFaultMessage" />
+			<wsdl:fault name="ServerFaultBinding" message="tns:ServerFaultMessage" />
 		</wsdl:operation>
 
 		<wsdl:operation name="forgotPassword">
 			<wsdl:input message="tns:forgotPasswordRequest"></wsdl:input>
 			<wsdl:output message="tns:forgotPasswordResponse"></wsdl:output>
+			<wsdl:fault name="ClientFaultBinding" message="tns:ClientFaultMessage" />
+			<wsdl:fault name="ServerFaultBinding" message="tns:ServerFaultMessage" />
 		</wsdl:operation>
 
 		<wsdl:operation name="resetPassword">
 			<wsdl:input message="tns:resetPasswordRequest"></wsdl:input>
 			<wsdl:output message="tns:resetPasswordResponse"></wsdl:output>
+			<wsdl:fault name="ClientFaultBinding" message="tns:ClientFaultMessage" />
+			<wsdl:fault name="ServerFaultBinding" message="tns:ServerFaultMessage" />
 		</wsdl:operation>
 	</wsdl:portType>
 
@@ -92,6 +111,12 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="ClientFaultBinding">
+				<soap:fault name="ClientFaultBinding" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="ServerFaultBinding">
+				<soap:fault name="ServerFaultBinding" use="literal" />
+			</wsdl:fault>
 		</wsdl:operation>
 
 		<wsdl:operation name="signIn">
@@ -102,6 +127,12 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="ClientFaultBinding">
+				<soap:fault name="ClientFaultBinding" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="ServerFaultBinding">
+				<soap:fault name="ServerFaultBinding" use="literal" />
+			</wsdl:fault>
 		</wsdl:operation>
 
 		<wsdl:operation name="getUser">
@@ -112,6 +143,12 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="ClientFaultBinding">
+				<soap:fault name="ClientFaultBinding" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="ServerFaultBinding">
+				<soap:fault name="ServerFaultBinding" use="literal" />
+			</wsdl:fault>
 		</wsdl:operation>
 
 		<wsdl:operation name="forgotPassword">
@@ -122,6 +159,12 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="ClientFaultBinding">
+				<soap:fault name="ClientFaultBinding" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="ServerFaultBinding">
+				<soap:fault name="ServerFaultBinding" use="literal" />
+			</wsdl:fault>
 		</wsdl:operation>
 
 		<wsdl:operation name="resetPassword">
@@ -132,6 +175,12 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="ClientFaultBinding">
+				<soap:fault name="ClientFaultBinding" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="ServerFaultBinding">
+				<soap:fault name="ServerFaultBinding" use="literal" />
+			</wsdl:fault>
 		</wsdl:operation>
 	</wsdl:binding>
 

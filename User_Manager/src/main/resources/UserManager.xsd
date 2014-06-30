@@ -2,6 +2,12 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fault="http://bookWorms.com/ws/faults"
 	xmlns:target="http://bookWorms.com/usermanager" targetNamespace="http://bookWorms.com/usermanager"
 	attributeFormDefault="qualified" elementFormDefault="qualified">
+	
+	<import namespace="http://bookWorms.com/ws/faults" schemaLocation="./Faults.xsd" />
+
+	<element name="ClientFault" type="fault:ClientFault" />
+	<element name="ServerFault" type="fault:ServerFault" />
+	
 	<element name="addUserRequest" type="target:addUser" />
 	<element name="signInRequest" type="target:signInUser" />
 	<element name="getUserRequest" type="target:getUserRequest" />
