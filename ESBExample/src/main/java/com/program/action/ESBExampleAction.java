@@ -20,7 +20,7 @@ public class ESBExampleAction extends AbstractActionLifecycle {
 
 		message.getProperties().setProperty("name", "sandy");
 		System.out
-				.println("$$$!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$ IN ESB Example Action class For serice 1 $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+				.println("$$$!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$ IN ESB Example Action class For serice 1 $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		ServiceInvoker invoker = new ServiceInvoker("test", "testService2");
 		invoker.deliverAsync(message);
 		return message;
